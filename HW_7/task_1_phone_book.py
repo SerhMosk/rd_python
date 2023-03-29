@@ -8,7 +8,15 @@
 # Entries must not be repeated, it is forbidden to overwrite entries,
 # only delete and add again.
 
-def print_info():
+init_phone_book = [
+    {"name": "Serhiy", "age": "40", "sex": "man", "phone": "0961111111"},
+    {"name": "Vitalii", "age": "35", "sex": "man", "phone": None}
+]
+
+
+def print_info(text=None):
+    if text:
+        print(text)
     print("Available commands:")
     print(" help or info: list of commands")
     print(" stats: number of records")
@@ -19,101 +27,123 @@ def print_info():
     print(" exit: exit from program")
 
 
-phone_book = [
-    {"name": "Serhiy", "age": "40", "sex": "man", "phone": "0961111111"},
-    {"name": "Vitalii", "age": "35", "sex": "man", "phone": None}
-]
+def print_number_of_records(book):
+    print(f"Number of phone book records: {len(book)}")
 
-print('--- PHONE BOOK ---')
-print('Enter "help" to show commands')
 
-while True:
-    command = input("ENTER COMMAND: ")
+def print_name_list(book):
+    print("The phone book records:")
+    for record in book:
+        print(f"- {record.get('name')}")
 
-    if command == "":
-        continue
 
-    elif command == 'exit':
-        break
+def find_record(book, name, show_info=False, return_index=False):
+    found_record = None
+    i = 0
 
-    elif command == "info" or command == "help":
-        print("PHONE BOOK PROGRAM")
-        print_info()
+    for record in book:
+        if record.get('name') == name:
+            found_record = record
+            break
+        i += 1
 
-    elif command == "stats":
-        print(f"Number of phone book records: {len(phone_book)}")
+    if show_info and found_record is None:
+        print(f'No record found with the name "{name}" to show.')
 
-    elif command == 'list':
-        print("The phone book records:")
-        for user in phone_book:
-            print(f"- {user.get('name')}")
+    if return_index:
+        return found_record, i
 
-    elif command == 'add':
-        print("Enter the data below to create a new record.")
-        while True:
-            name = input('Enter name: ')
-            is_available = True
+    return found_record
 
-            for user in phone_book:
-                if user.get('name') == name:
-                    is_available = False
-            if is_available:
-                break
-            else:
-                print('This name exists! Try a different name.')
 
-        age = input('Enter age: ')
-        sex = input('Enter sex: ')
-        phone = input('Enter phone number: ')
+def add_record(book):
+    print("Enter the data below to create a new record.")
 
-        phone_book.append({"name": name, "age": age, "sex": sex, "phone": "-" if phone == "" else phone})
-        print("New record successfully added.")
+    while True:
+        name = input('Enter name: ')
 
+        if find_record(book, name) is None:
+            break
+        else:
+            print('This name exists! Try a different name.')
+
+    age = input('Enter age: ')
+    sex = input('Enter sex: ')
+    phone = input('Enter phone number: ')
+
+    book.append({"name": name, "age": age, "sex": sex, "phone": "-" if phone == "" else phone})
+    print("New record successfully added.")
+
+    return book
+
+
+def show_record(found_record):
+    if found_record:
+        print("The record details:")
+        print(f" Name: {found_record.get('name')}")
+        print(f" Age: {found_record.get('age')}")
+        print(f" Sex: {found_record.get('sex')}")
+        print(f" Phone number: {found_record.get('phone')}")
+
+
+def delete_record(book, name):
+    result = find_record(book, name, return_index=True)
+
+    if result[0] is not None:
+        del book[result[1]]
+        print(f'The record "{name}" has been deleted.')
     else:
-        args = command.split()
-        command = args[0]
+        print(f'No record found with the name "{name}" to delete.')
+    return book
 
-        if len(args) == 2:
-            name = args[1]
-            found_user = None
 
-            if command == 'show':
-                for user in phone_book:
-                    if user.get('name') == name:
-                        found_user = user
-                        break
+def init_app(phone_book):
+    print('--- PHONE BOOK ---')
+    print('Enter "help" to show commands')
 
-                if found_user:
-                    print("The record details:")
-                    print(f" Name: {found_user.get('name')}")
-                    print(f" Age: {found_user.get('age')}")
-                    print(f" Sex: {found_user.get('sex')}")
-                    print(f" Phone number: {found_user.get('phone')}")
-                else:
-                    print(f'No record found with the name "{name}" to show.')
+    while True:
+        command = input('ENTER COMMAND: ')
 
-            elif command == 'delete':
-                i = 0
-                for user in phone_book:
-                    if user.get('name') == name:
-                        found_user = user
-                        break
-                    i += 1
+        if command == '':
+            continue
 
-                if found_user:
-                    del phone_book[i]
-                    print(f'The record "{name}" has been deleted.')
-                else:
-                    print(f'No record found with the name "{name}" to delete.')
+        elif command == 'exit':
+            break
 
-            else:
-                print('Wrong command.')
-                print_info()
+        elif command == 'info' or command == 'help':
+            print_info(text='PHONE BOOK PROGRAM')
 
-        elif command == 'show' or command == 'delete':
-            print('You did not enter the second command parameter <name> without spaces.')
-            print_info()
+        elif command == 'stats':
+            print_number_of_records(phone_book)
+
+        elif command == 'list':
+            print_name_list(phone_book)
+
+        elif command == 'add':
+            phone_book = add_record(phone_book)
 
         else:
-            print('Wrong command.')
-            print_info()
+            args = command.split()
+            command = args[0]
+
+            if len(args) == 2:
+                name = args[1]
+
+                if command == 'show':
+                    show_record(find_record(phone_book, name, show_info=True))
+
+                elif command == 'delete':
+                    phone_book = delete_record(phone_book, name)
+
+                else:
+                    print_info(text='Wrong command.')
+
+            elif command == 'show' or command == 'delete':
+                print_info(text='You did not enter the second command parameter <name> without spaces.')
+
+            else:
+                print_info(text='Wrong command.')
+
+
+# Run program
+init_app(init_phone_book)
