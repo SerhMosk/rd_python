@@ -1,0 +1,4 @@
+Personal email: my.email@domain.com.ua
+Work email: work-email@mail.com
+Test email: test@test.com
+Test email repeat: test@test.com
