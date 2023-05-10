@@ -12,6 +12,10 @@ class MyStr:
     def __str__(self):
         return self.text.upper()
 
+# class MyStr(str):
+#     def __str__(self):
+#         return self.upper()
+
 
 my_str = MyStr(input('ENTER SOME TEXT: '))
 print(my_str)

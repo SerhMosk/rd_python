@@ -20,6 +20,9 @@ Bot = type(
         '__init__': init_bot,
         'say_name': say_name,
         'send_message': send_message,
+        # "__init__": lambda self, name: setattr(self, "name", name),
+        # "send_message": lambda self, message: print(message),
+        # "say_name": lambda self: print(self.name)
     }
 )
 
