@@ -1,0 +1,279 @@
+body {
+    background-color: #f3f2ef;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.main {
+    margin-top: 76px;
+    margin-bottom: 24px;
+}
+
+.search-field {
+    max-height: 34px;
+}
+
+.search-field input {
+    background-color: rgb(238, 243, 248);
+}
+
+.search-field .input-group-text {
+    background-color: rgb(238, 243, 248);
+}
+
+.navbar {
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.nav-link i {
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.nav-link span {
+    font-size: 12px;
+}
+
+.profile-avatar {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+}
+
+.header-title {
+    margin: 0;
+}
+
+.about-myself-bg {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.about-myself-bg img {
+    border-radius: 8px 8px 0 0;
+    width: 100%;
+}
+
+.my-photo-wrapper {
+    background-clip: border-box;
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 49.9%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -112px;
+    height: 160px;
+    width: 160px;
+    position: relative;
+    z-index: 4;
+}
+
+.my-photo-wrapper img {
+    border-radius: 50%;
+    height: 152px;
+    width: 152px;
+}
+
+.education-logo {
+    box-sizing: border-box;
+    height: 48px;
+    width: 48px;
+}
+
+#actionButtons .btn {
+    margin-bottom: 10px;
+}
+
+.btn-primary,
+.btn-success {
+    border-width: 2px;
+}
+
+.btn-primary {
+    background-color: #0a66c2;
+    border-color: #0a66c2;
+}
+
+.btn-primary:hover {
+    background-color: #004182;
+    border-color: #004182;
+}
+
+.btn-rounded {
+    border-radius: 19px;
+}
+
+.black-light {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.link-text {
+    color: #0a66c2;
+}
+
+.hoverable-link-text:hover {
+    color: #0a66c2;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.short-info p,
+.experience-item p,
+.skill-item p,
+.education-item p {
+    margin: 0;
+}
+
+.experience-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 16px 0;
+}
+
+.experience-item-info {
+    margin-bottom: 10px;
+}
+
+.experience-item,
+.skill-item,
+.entity-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 16px 0;
+}
+
+.experience-item:last-child,
+.skill-item:last-child,
+.entity-item:last-child {
+    border: none;
+}
+
+.skill-item .bi {
+    font-size: 20px;
+    line-height: 16px;
+}
+
+
+.entity-avatar {
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+}
+
+.entity-logo-wrapper {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    width: 48px;
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-logo,
+.entity-logo {
+    height: 48px;
+}
+
+@media screen and (min-width: 1200px) {
+    .sidebar {
+        min-width: 300px;
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .entity-logo {
+        height: 36px;
+    }
+
+    .experience-logo,
+    .education-logo,
+    .entity-avatar,
+    .entity-logo-wrapper {
+        height: 36px;
+        width: 36px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .navbar-collapse > div {
+        flex-direction: column;
+        align-items: start !important;
+        justify-content: start !important;
+        width: auto !important;
+    }
+
+    .nav-link {
+        flex-direction: row;
+        justify-content: start;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    .nav-link span {
+        font-size: 16px;
+    }
+
+    .nav-link i {
+        font-size: 16px;
+        line-height: 16px;
+        margin-right: 16px;
+    }
+
+    .nav-link img {
+        height: 16px;
+        width: 16px;
+        margin-right: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        /*font-size: 80%;*/
+    }
+
+    .entity-logo {
+        height: 36px;
+    }
+
+    .education-logo {
+        height: 32px;
+        width: 32px;
+    }
+
+    .entity-avatar,
+    .entity-logo-wrapper {
+        height: 36px;
+        width: 36px;
+    }
+
+    .experience-logo {
+        height: 48px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .entity-logo {
+        height: 32px;
+    }
+
+    .education-logo,
+    .entity-avatar,
+    .entity-logo-wrapper {
+        height: 32px;
+        width: 32px;
+    }
+}
