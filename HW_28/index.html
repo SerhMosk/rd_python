@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sergey Moskalenko | LinkedIn</title>
+    <link rel="alternate icon" href="img/favicon.ico" id="favicon-ico" sizes="any">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="scripts.js" defer></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-1 fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/linkedin.png" alt="linkedin" width="34" height="34">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <form class="d-flex">
+                        <div class="input-group flex-nowrap me-2 search-field">
+                            <span class="input-group-text" id="addon-wrapping"><i class="bi-search"></i></span>
+                            <input class="form-control" type="search" placeholder="Пошук" aria-label="Search"
+                                   aria-describedby="addon-wrapping">
+                        </div>
+                    </form>
+                    <div>
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="#aboutMyself">
+                                    <i class="bi bi-person-fill"></i>
+                                    <span>Про себе</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#homeWorks">
+                                    <i class="bi bi-house-door-fill"></i>
+                                    <span>Домашні завдання</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#experience">
+                                    <i class="bi bi-briefcase-fill"></i>
+                                    <span>Досвід роботи</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#education">
+                                    <i class="bi bi-bank2"></i>
+                                    <span>Освіта</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#skills">
+                                    <i class="bi bi-person-lines-fill"></i>
+                                    <span>Навички</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://www.linkedin.com/in/mainserg/">
+                                    <img src="img/profile.jpeg" alt="profile" class="profile-avatar">
+                                    <span>Профиль</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="main container">
+    <div class="row">
+        <div class="col-lg-8 col-sm-12">
+            <section id="aboutMyself" class="card about-myself">
+                <div class="about-myself-bg">
+                    <img src="img/about_myself_bg.jpeg" alt="about myself bg">
+                </div>
+                <div class="container px-4 pb-4">
+                    <div class="my-photo-wrapper">
+                        <img src="img/my_photo.jpeg" alt="my photo">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7 col-sm-12">
+                            <h3>Сергій Москаленко</h3>
+                            <h5>Full-stack Developer</h5>
+
+                            <div class="short-info my-2">
+                                <p>м. Кривий Ріг, Дніпропетровська обл., Україна</p>
+                                <p class="link-text hoverable-link-text">Контактна інформація</p>
+                                <p class="link-text hoverable-link-text mt-1" id="contactCounter"></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-sm-12">
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="img/kdpu-logo.png" alt="education-logo" class="education-logo">
+                                </div>
+                                <div class="col-10">
+                                    Криворізький Державний Педагогічний Університет
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="actionButtons" class="col mt-2">
+                            <button class="btn btn-sm btn-primary btn-rounded me-2" id="addToFriends">
+                                <i class="bi bi-person-plus-fill me-1"></i>
+                                Додати в друзі
+                            </button>
+                            <button class="btn btn-sm btn-primary btn-rounded me-2" id="sendMessage">
+                                <i class="bi bi-send-fill me-1"></i>
+                                Написати повідомлення
+                            </button>
+                            <button class="btn btn-sm btn-primary btn-rounded me-2" id="jobOffer">
+                                <i class="bi bi-file-earmark-text-fill me-1"></i>
+                                Запропонувати роботу
+                            </button>
+                            <button class="btn btn-sm btn-primary btn-rounded me-2" id="submitHomework">
+                                <i class="bi bi-check-square-fill me-1"></i>
+                                Здати ДЗ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12 mt-2">
+                            <div class="card p-3">
+                                <h5>Досвід роботи</h5>
+                                <p class="m-0">
+                                    Працював в 4-х ІТ компаніях та на фрілансі загалом близько 10-ти років
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mt-2">
+                            <div class="card p-3">
+                                <h5>Сфера роботи</h5>
+                                <ul>
+                                    <li>IT</li>
+                                    <li>E-commerce</li>
+                                    <li>Надання послуг</li>
+                                    <li>Освіта</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mt-2">
+                            <div class="card p-3">
+                                <h5>Основні інструменти</h5>
+                                <ul>
+                                    <li>Angular</li>
+                                    <li>Bootstrap</li>
+                                    <li>PHP</li>
+                                    <li>NodeJS</li>
+                                    <li>MySQL</li>
+                                    <li>MongoDB</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 mt-2">
+                            <div class="card p-3">
+                                <h5>Досягнення</h5>
+                                <p class="m-0">
+                                    Senior Full-stack Developer
+                                </p>
+                                <p class="m-0">
+                                    Маю у портфоліо більше 10-ти проектів з різним стеком технологій,
+                                    які розробляв або з самого початку або приєднувався на певному етапі.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="basicInfo" class="card mt-2">
+                <div class="container p-4">
+                    <h4 class="header-title pb-3">
+                        Загальна інформація
+                    </h4>
+                    <div>
+                        I'm developing on PHP, JavaScript, Angular, Ionic, Flutter and other languages and frameworks.
+                    </div>
+                </div>
+            </section>
+
+            <section id="homeWorks" class="card mt-2">
+                <div class="container p-4">
+                    <h4 class="header-title pb-3">
+                        Домашні завдання
+                    </h4>
+                    <div class="overflow-auto">
+                        <table id="homeWorkTable" class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Номер уроку</th>
+                                <th scope="col">Назва уроку</th>
+                                <th scope="col">Кількість обовʼязкових завдань</th>
+                                <th scope="col">Кількість необовʼязкових завдань</th>
+                                <th scope="col">Оцінка</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Базові типи даних та операції. Part 1</td>
+                                <td>6</td>
+                                <td>0</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Базові типи даних та операції. Part 2</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>Цикли</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>Функції</td>
+                                <td>2</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td>Колекції та структури даних. Part 1</td>
+                                <td>1</td>
+                                <td>0</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">8</th>
+                                <td>Колекції та структури даних. Part 2</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">10</th>
+                                <td>Рекурсія</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">11</th>
+                                <td>Помилки та винятки</td>
+                                <td>1</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">12</th>
+                                <td>Декоратори і менеджери контексту</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">13</th>
+                                <td>Файли</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">15</th>
+                                <td>Регулярні вирази (RegEx) в Python</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">16</th>
+                                <td>Багатопотокове програмування</td>
+                                <td>3</td>
+                                <td>0</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">19</th>
+                                <td>ООП на прикладах в Python: класи і робота з ними</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>8</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">21</th>
+                                <td>Створення бази даних</td>
+                                <td>2</td>
+                                <td>2</td>
+                                <td>7</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">22</th>
+                                <td>Робота з базами даних. Part 1</td>
+                                <td>4</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">23</th>
+                                <td>Робота з базами даних. Part 2</td>
+                                <td>3</td>
+                                <td>1</td>
+                                <td>6</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" colspan="4">Всього</th>
+                                <th scope="row">99</th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience" class="card mt-2">
+                <div class="container p-4">
+                    <h4 class="header-title pb-3">
+                        Досвід
+                    </h4>
+
+                    <div class="experience-list">
+                        <div class="row experience-item">
+                            <div class="col-md-1 col-sm-12">
+                                <img src="img/opengeekslab.jpeg" loading="lazy" class="experience-logo pb-sm-2"
+                                     alt="Емблема OpenGeeksLab">
+                            </div>
+
+                            <div class="col-md-11 col-sm-12">
+                                <div class="experience-item-info">
+                                    <h6>
+                                        <strong>Full-stack Developer</strong>
+                                    </h6>
+                                    <p>
+                                        OpenGeeksLab · Повний робочий день
+                                    </p>
+                                    <p class="black-light">
+                                        лют 2021 р. – лют 2023 р. · 2&nbsp;р. 1&nbsp;міс.
+                                    </p>
+                                    <p class="black-light">
+                                        Кривий Ріг, Україна
+                                    </p>
+                                </div>
+                                <div class="experience-item-description">
+                                    <p>Розробка веб-сайтів та кросплатформенних додатків на Angular, Capacitor (FE),
+                                        NodeJS, NestJS (BE).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row experience-item">
+                            <div class="col-md-1 col-sm-12">
+                                <img src="img/desna.jpeg" loading="lazy" class="experience-logo pb-sm-2"
+                                     alt="Емблема Desna Systems">
+                            </div>
+
+                            <div class="col-md-11 col-sm-12">
+                                <div class="experience-item-info">
+                                    <h6>
+                                        <strong>Software Engineer</strong>
+                                    </h6>
+                                    <p>
+                                        Desna Studio · Повний робочий день
+                                    </p>
+                                    <p class="black-light">
+                                        лют 2017 р. – лют 2021 р. · 4&nbsp;р. 1&nbsp;міс.
+                                    </p>
+                                    <p class="black-light">
+                                        Кривий Ріг, Україна
+                                    </p>
+                                </div>
+                                <div class="experience-item-description">
+                                    <p>Розробка веб-сайтів та додатків на платформах SilverStripe, WordPress, Joomla,
+                                        Symfony, Shopify, Ionic, Meteor, MEANjs, NuxtJS, Flutter та інших.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row experience-item">
+                            <div class="col-md-1 col-sm-12">
+                                <img src="img/web100.jpeg" loading="lazy" class="experience-logo pb-sm-2"
+                                     alt="Емблема WEB100 Technologies">
+                            </div>
+
+                            <div class="col-md-11 col-sm-12">
+                                <div class="experience-item-info">
+                                    <h6>
+                                        <strong>Software Engineer</strong>
+                                    </h6>
+                                    <p>
+                                        WEB100 Technologies · Повний робочий день
+                                    </p>
+                                    <p class="black-light">
+                                        лют 2015 р. – вер 2020 р. · 5&nbsp;р. 8&nbsp;міс.
+                                    </p>
+                                    <p class="black-light">
+                                        Кривий Ріг, Україна
+                                    </p>
+                                </div>
+                                <div class="experience-item-description">
+                                    <p>Розробка веб-сайтів та додатків на платформах SilverStripe, WordPress, Joomla,
+                                        Symfony, Shopify, Ionic, Meteor, MEANjs, NuxtJS, Flutter та інших.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row experience-item">
+                            <div class="col-md-1 col-sm-12">
+                                <img src="img/default.png" loading="lazy" class="experience-logo pb-sm-2" alt="Емблема default">
+                            </div>
+
+                            <div class="col-md-11 col-sm-12">
+                                <div class="experience-item-info">
+                                    <h6>
+                                        <strong>Web Developer</strong>
+                                    </h6>
+                                    <p>
+                                        MainCoder · Часткова зайнятість
+                                    </p>
+                                    <p class="black-light">
+                                        вер 2012 р. – лют 2015 р. · 2&nbsp;р. 6&nbsp;міс.
+                                    </p>
+                                    <p class="black-light">
+                                        Кривий Ріг, Україна
+                                    </p>
+                                </div>
+                                <div class="experience-item-description">
+                                    <p>Розробка веб-сайтів та мобільних додатків.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row experience-item">
+                            <div class="col-md-1 col-sm-12">
+                                <img src="img/default.png" loading="lazy" class="experience-logo pb-sm-2" alt="Емблема default">
+                            </div>
+
+                            <div class="col-md-11 col-sm-12">
+                                <div class="experience-item-info">
+                                    <h6>
+                                        <strong>Web Developer</strong>
+                                    </h6>
+                                    <p>
+                                        Відкритий простір · Повний робочий день
+                                    </p>
+                                    <p class="black-light">
+                                        лип 2013 р. – лют 2014 р. · 8&nbsp;міс.
+                                    </p>
+                                    <p class="black-light">
+                                        Кривий Ріг, Україна
+                                    </p>
+                                </div>
+                                <div class="experience-item-description">
+                                    <p>Розробка веб-ресурсу для обміну, введення та виведення електронних грошей. Тех.
+                                        підтримка сайту.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education" class="card mt-2">
+                <div class="container p-4">
+                    <h4 class="header-title pb-3">
+                        Освіта
+                    </h4>
+                    <div class="row">
+                        <div class="col-1">
+                            <img src="img/kdpu-logo.png" alt="education-logo" class="education-logo">
+                        </div>
+                        <div class="col-11">
+                            <div class="education-item">
+                                <p class="hoverable-link-text">
+                                    <strong>Криворізький Державний Педагогічний Університет</strong>
+                                </p>
+                                <p>спеціаліст, фізика та інформатика</p>
+                                <p class="black-light">2000 – 2005</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="card mt-2">
+                <div class="container p-4">
+                    <h4 class="header-title">
+                        Навички
+                    </h4>
+                    <small class="black-light">
+                        <i class="bi bi-info-square-fill"></i> Ви додали максимальну кількість навичок.
+                    </small>
+
+                    <div class="skill-list mt-3">
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>PHP</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                9 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>HTML</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                8 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>CSS</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                8 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>WordPress</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                7 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>MySQL</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                6 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>JavaScript</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                6 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>jQuery</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                6 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>AJAX</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                6 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Git</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Subversion</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Bootstrap</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Joomla</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Microsoft Office</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Photoshop</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>SQL</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                3 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>HTML5</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                3 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>XML</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                3 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>JSON</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                3 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Apache</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>RESTful API</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                3 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Nginx</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                1 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>PhpMyAdmin</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Ionic</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Angular</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>NodeJS</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>ExpressJS</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>EJS</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>MeanJS</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                2 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>VueJS</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                1 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>NuxtJS</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                1 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>MongoDB</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Yii</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                5 підтверджень навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>SSH</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Putty</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Pascal</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Delphi</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>SQLite</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Cron</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>SilverStripe</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Mantis</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Trello</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>CMF MODX Evolution</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Materialize Design</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Meteor</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Smarty</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Bitbucket</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                4 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>GrapheneDB</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                2 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>GraphQL</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                2 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>ProxMox</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                2 підтвердження навички
+                            </p>
+                        </div>
+                        <div class="skill-item">
+                            <h6 class="hoverable-link-text"><strong>Flutter</strong></h6>
+                            <p class="hoverable-link-text">
+                                <i class="bi bi-people-fill"></i>
+                                2 підтвердження навички
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-lg-4 col-sm-12 sidebar">
+            <div class="card p-4">
+                <h5>
+                    Люди також переглядали
+                </h5>
+                <p>Не має інформації для перегляду</p>
+            </div>
+            <div class="card p-4 mt-2">
+                <h5>
+                    Люди, яких ви можете знати
+                </h5>
+                <div class="row py-2">
+                    <div class="col-2">
+                        <img src="img/Vitalii.jpeg" alt="Vitalii Hrebennikov" class="entity-avatar">
+                    </div>
+                    <div class="col-10">
+                        <h6 class="hoverable-link-text mb-0"><strong>Vitalii Hrebennikov</strong></h6>
+                        <p class="black-light mb-1">Контакт 2-го рівня</p>
+                        <p>Senior Python Software Engineer at SoftServe</p>
+
+                        <button class="btn btn-lg btn-outline-secondary btn-rounded">
+                            <i class="bi bi-person-plus-fill me-1"></i>
+                            Встановити контакт
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4 mt-2">
+                <h5 class="mb-0">
+                    Вам може сподобатися
+                </h5>
+                <p class="black-light mb-0">Групи для вас</p>
+                <div class="row entity-item">
+                    <div class="col-2">
+                        <div class="entity-logo-wrapper">
+                            <img src="img/react-dev.jpeg"
+                                 alt="Емблема React Developers - ReactJS & React Native Professional Development Mastermind"
+                                 class="entity-logo">
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <h6 class="hoverable-link-text">
+                            <strong>React Developers - ReactJS & React Native Professional Development
+                                Mastermind</strong>
+                        </h6>
+                        <p class="black-light">305 935 учасників</p>
+                        <button class="btn btn-outline-secondary btn-rounded">Приєднатися</button>
+                    </div>
+                </div>
+                <div class="row entity-item">
+                    <div class="col-2">
+                        <div class="entity-logo-wrapper">
+                            <img src="img/react-native.jpeg" alt="Емблема React Native" class="entity-logo">
+                        </div>
+                    </div>
+                    <div class="col-10">
+                        <h6 class="hoverable-link-text"><strong>React Native</strong></h6>
+                        <p class="black-light">215 070 учасників</p>
+                        <button class="btn btn-outline-secondary btn-rounded">Приєднатися</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="black-light px-4 py-3">LinkedIn Corporation © 2023</div>
+</footer>
+</body>
+</html>
