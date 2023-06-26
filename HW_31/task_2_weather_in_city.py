@@ -57,19 +57,18 @@ def init_app():
 
             print(f"Request Weather Start")
             print('=' * 30)
+
             if weather := get_weather(coords):
                 print(f'Weather in {command}')
                 for key in weather.keys():
                     print(f'- {key}: {dt.strptime(weather[key], "%Y-%m-%dT%H:%M").strftime("%d.%m.%Y %H:%M") if key == "time" else weather[key]}')
             else:
                 print('Weather not found. Try again.')
-            print('-' * 30)
 
         else:
             print('City not found. Try again.')
-            print('-' * 30)
+        print('-' * 30)
 
 
 # Run program
 init_app()
-
