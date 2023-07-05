@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+    <h2>{{ title }}</h2>
+    <input type="button" class="btn btn-secondary mb-2" value="Back" onclick="window.location.href=document.referrer">
+
+    {% if keys|length %}
+    <table class="table table-dark">
+        <thead>
+            <tr><th>parameter</th><th>value</th></tr>
+        </thead>
+        <tbody>
+        {% for key in keys %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ params[key] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No params</p>
+    {% endif %}
+{% endblock %}
