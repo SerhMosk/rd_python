@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+    <h2>{{ title }}</h2>
+    {% if 'username' in session %}
+        <h3>Users</h3>
+        <p>Get random users list: <a href="/users">Users List</a></p>
+        <p>Get random list of 20 users: <a href="/users?count=20">List of 20 users</a></p>
+        <p>Get user with id=1: <a href="/users/1">User 1</a></p>
+        <p>Get user with id=2: <a href="/users/2">User 2</a></p>
+
+        <h3>Books</h3>
+        <p>Get random books list: <a href="/books">Books List</a></p>
+        <p>Get random list of 20 books: <a href="/books?count=20">List of 20 books</a></p>
+        <p>Get book with name: <a href="/books/12">12</a></p>
+        <p>Get book with name: <a href="/books/kobzaR">"kobzaR"</a></p>
+
+        <h3>Params</h3>
+        <p>Get params from empty query string: <a href="/params">/params</a></p>
+        <p>Get params from query string: <a href="/params?name=Test&age=1">/params?name=Test&age=1</a></p>
+
+        <h3>Login</h3>
+        <p>Login Page: <a href="/login">Login</a></p>
+
+        <h3>Page 404</h3>
+        <p>Custom Not Found Page: <a href="/not-found">404</a></p>
+    {% else %}
+        <p>You are not authorized, please <a class="text-link" href="{{ url_for('login') }}">Login</a></p>
+    {% endif %}
+{% endblock %}
