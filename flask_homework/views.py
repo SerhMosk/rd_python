@@ -1,162 +1,360 @@
-# 1. Create html templates for each of the endpoints that were created during
-# the execution of the previous DZ. The same data should be displayed, but
-# integrated into the templates using context.
-# - /users
-# - /users/{id}
-# - /books
-# - /books/{id}
-# - /params
-# - /login
+# 1. Create an .env file, where you add all the data that should be secret:
+# - SECRET_KEY
+# - Database name (and other details if available)
+# - The host and port on which the service is running
+# - Other values if necessary
 #
-# 2. In the endpoint /login, when filling out the form, add the functionality
-# of recording the user name in the session.
+# 2. Create a file .env.template, which will describe the structure of .env
+# (variable names), but not contain values.
+# The .env file DOES NOT need to be pushed to GitHub, the .env.template is required.
+# (You can add .env to .gitignore)
 #
-# 3. Add a check to all pages to see if the session contains a username:
-# - If it contains - display the text "Hello, username" at the very beginning
-# of the page, where username is the user's name from the session.
-# - If it does not contain – redirect the user to the /login page
+# 3. Replace all secret values in the code with values from environment
 #
-# 4. (optional) Add a logout button to each page, when clicking on which the
-# user should be removed from the session and redirected to the /login page.
-# For this, you need to implement a separate /logout endpoint as well.
+# 4. Using flask_sqlalchemy, connect the database and create the following models:
+# User,
+# book,
+# Purchase.
+# The data structure and relationships should be the same as in the homework for
+# the topic “Basic work with databases. Part 2".
 #
-# 5. (optional) Add styles to HTML code contained in templates by placing css
-# files as static files in a separate directory.
+# 5. Modify existing or add new endpoints. Display data in JSON format or using an HTML template:
+# - GET /user — display a list of all User objects (all records of the corresponding table)
+# - GET /user/<int:user_id> — display information about the User with the corresponding id, or 404
+# - GET /book — display a list of all Book objects (all records of the corresponding table)
+# - GET /book/<int:book_id> — display information about the Book with the corresponding id, or 404
+# - GET /purchase — display a list of all Purchase objects (all records of the corresponding table)
+# - GET /purchase/<int:purchase_id> — display information about the Purchase with the corresponding id, or 404
+#
+# 6. (optional) When transmitting with query param size=n for endpoints with a list
+# of objects, show the corresponding number of objects.
+#
+# 7. (optional) When requesting endpoints /purchase and /purchase/<int:purchase_id>,
+# display not only information about purchase, but also the name of the book and
+# the name of the user who bought it.
+#
+# 8. (optional) Implement the possibility of creating new objects in the database.
+# Endpoints can accept "application/json" or "application/x-www-form-urlencoded":
+# - POST /user
+# - POST /book
+# - POST /purchase (check if the corresponding User and Book exist)
 
-import random
-import string
 import re
-from flask import abort, request, redirect, render_template, session
-from app import app
-
-first_names = ["Vitalii", "Serhii", "Oleksandr", "Dmytro", "Oksana", "Nadiia", "Sofiia",
-               "Stepan", "Petro", "Bogdan", "Vasyl", "Ivan", "Maksym", "Artem"]
-last_names = ["Hrebennikov", "Serhiienko", "Dmytrenko", "Mostovenko", "Petrenko", "Oleksienko", "Kovalenko",
-              "Stepanenko", "Vasylenko", "Bovtruk", "Bondarenko", "Ivanenko", "Maksymenko", "Moskalenko"]
+from flask import abort, request, redirect, render_template, session, url_for
+from sqlalchemy import desc, or_, and_, func
+from app import app, db
+from models import User, Book, Purchase
 
 
-def generate_random_string(length):
-    letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for _ in range(length))
+def get_list(query):
+    result = db.session.execute(query).scalars()
+    return [item.__dict__ for item in result]
 
 
-def generate_random_titles(length):
-    titles = []
-    for _ in range(length):
-        titles.append(generate_random_string(random.randint(5, 25)).capitalize())
-
-    return titles
-
-
+# Task 5
 @app.get('/users')
-def get_users():
-    # Task 3
+def user_list():
     if 'username' not in session:
-        return redirect('/login')
+        return redirect(url_for('login'))
 
     filters = request.values
+    # Task 6
     try:
-        cnt = int(filters.get('count')) if filters.get('count') else random.randint(1, 100)
+        cnt = int(filters.get('size')) if filters.get('size') else None
     except ValueError:
-        abort(400, 'Invalid count value')
+        abort(400, 'Invalid size value')
 
-    # ===== generate users
-    users = []
-    for _ in range(cnt):
-        users.append(random.choice(first_names) + ' ' + random.choice(last_names))
+    columns = ['id', 'username', 'first_name', 'last_name', 'age']
+    query = db.select(User).limit(cnt) if cnt else db.select(User)
+    users = get_list(query)
 
-    # Task 1
     context = {
         'title': 'User List',
+        'active': 'users',
         'users': users,
+        'keys': columns
+    }
+
+    return render_template('user/list.html', **context), 200
+
+
+# Task 5
+@app.get('/users/<user_id>')
+def user_detail(user_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    user = db.get_or_404(User, user_id)
+
+    context = {
+        'title': 'User Details',
+        'active': 'users',
+        'user': user.__dict__
+    }
+
+    return render_template('user/detail.html', **context), 200
+
+
+# Task 8
+@app.route("/users/create", methods=["GET", "POST"])
+def user_create():
+    if request.method == "POST":
+        data = request.form
+
+        query = db.select(User).filter(or_(
+            User.username == data["username"],
+            User.first_name == data["first_name"],
+            User.last_name == data["last_name"]
+        ))
+        users = get_list(query)
+
+        if len(users):
+            return 'Username, first name or last name is not unique', 409
+
+        user = User(
+            username=data["username"],
+            password=data["password"],
+            first_name=data["first_name"],
+            last_name=data["last_name"],
+            age=data["age"],
+        )
+
+        db.session.add(user)
+        db.session.commit()
+
+        return redirect(url_for('user_detail', user_id=user.id))
+
+    context = {
+        'title': 'Create User',
         'active': 'users'
     }
 
-    return render_template('users/list.html', **context), 200
+    return render_template("user/create.html", **context)
+
+
+# Task 8: additional
+@app.delete("/users/<int:user_id>")
+def user_delete(user_id):
+    user = db.get_or_404(User, user_id)
+
+    db.session.delete(user)
+    db.session.commit()
+
+    # return redirect(url_for("user_list"))
+    return 'OK', 200
 
 
 @app.get('/books')
-def get_books():
+def book_list():
     if 'username' not in session:
-        return redirect('/login')
+        return redirect(url_for('login'))
 
     filters = request.values
     try:
-        cnt = int(filters.get('count')) if filters.get('count') else random.randint(1, 100)
+        cnt = int(filters.get('size')) if filters.get('size') else None
     except ValueError:
-        abort(400, 'Invalid count value')
+        abort(400, 'Invalid size value')
+
+    columns = ['id', 'title', 'author', 'year', 'price']
+    query = db.select(Book).limit(cnt) if cnt else db.select(Book)
+    books = get_list(query)
 
     context = {
         'title': 'Book List',
-        'books': generate_random_titles(cnt),
-        'active': 'books'
+        'active': 'books',
+        'books': books,
+        'keys': columns
     }
 
-    return render_template('books/list.html', **context), 200
+    return render_template('book/list.html', **context), 200
 
 
-@app.get('/users/<user_id>')
-def get_user(user_id):
+@app.get('/books/<book_id>')
+def book_detail(book_id):
     if 'username' not in session:
-        return redirect('/login')
+        return redirect(url_for('login'))
 
-    try:
-        user_id_int = int(user_id)
-    except ValueError:
-        abort(400, 'Invalid user id')
-
-    if user_id_int % 2 == 0:
-        context = {
-            'title': 'User Details',
-            'user_id': user_id_int,
-            'active': 'users'
-        }
-
-        return render_template('users/user.html', **context), 200
-
-    abort(404, 'User not found')
-
-
-@app.get('/books/<name>')
-def get_book(name):
-    if 'username' not in session:
-        return redirect('/login')
-
-    if name.isnumeric():
-        abort(400, 'Invalid book name')
+    book = db.get_or_404(Book, book_id)
 
     context = {
         'title': 'Book Details',
-        'book': name.capitalize(),
+        'active': 'books',
+        'book': book.__dict__
+    }
+
+    return render_template('book/detail.html', **context), 200
+
+
+@app.route("/books/create", methods=["GET", "POST"])
+def book_create():
+    if request.method == "POST":
+        data = request.form
+
+        query = db.select(Book).filter(and_(
+            Book.title == data["title"],
+            Book.author == data["author"],
+            Book.year == data["year"]
+        ))
+        books = get_list(query)
+
+        if len(books):
+            return 'The book was added earlier', 409
+
+        book = Book(
+            title=data["title"],
+            author=data["author"],
+            year=data["year"],
+            price=data["price"],
+        )
+
+        db.session.add(book)
+        db.session.commit()
+
+        return redirect(url_for('book_detail', book_id=book.id))
+
+    context = {
+        'title': 'Create Book',
         'active': 'books'
     }
 
-    return render_template('books/book.html', **context), 200
+    return render_template("book/create.html", **context)
+
+
+@app.delete("/books/<int:book_id>")
+def book_delete(book_id):
+    book = db.get_or_404(Book, book_id)
+
+    db.session.delete(book)
+    db.session.commit()
+
+    # return redirect(url_for("book_list"))
+    return 'OK', 200
+
+
+@app.get('/purchases')
+def purchase_list():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    filters = request.values
+    try:
+        cnt = int(filters.get('size')) if filters.get('size') else None
+    except ValueError:
+        abort(400, 'Invalid size value')
+
+    columns = ['id', 'book', 'username', 'price', 'date']
+
+    # First solution
+    # query = db.session
+    #     .query(Purchase.id, Book.id, Book.title, User.id, User.username, Purchase.date).join(Book).join(User)\
+    #     .limit(cnt if cnt else -1)
+
+    # Second solution
+    query = db.session.query(Purchase, Book, User).join(Book).join(User).limit(cnt if cnt else -1)
+    purchases = query.all()
+
+    # Task 7
+    books = get_list(db.select(Book))
+    users = get_list(db.select(User))
+
+    context = {
+        'title': 'Purchase List',
+        'active': 'purchases',
+        'purchases': purchases,
+        'keys': columns,
+        'books': books,
+        'users': users
+    }
+
+    return render_template('purchase/list.html', **context), 200
+
+
+@app.get('/purchases/<purchase_id>')
+def purchase_detail(purchase_id):
+    if 'username' not in session:
+        return redirect(url_for('login'))
+
+    # Task 7
+    result = db.get_or_404(Purchase, purchase_id)
+    query = db.session.query(Purchase, Book, User).join(Book).join(User).filter(Purchase.id == purchase_id).limit(1)
+    context = {
+        'title': 'Purchase Details',
+        'active': 'purchases',
+        'purchase': query.all()
+    }
+
+    return render_template('purchase/detail.html', **context), 200
+
+
+@app.route("/purchases/create", methods=["GET", "POST"])
+def purchase_create():
+    if request.method == "POST":
+        data = request.form
+
+        if data['book_id'] is None or data['user_id'] is None:
+            return 'Invalid book_id or user_id value', 400
+
+        try:
+            book_id = int(data['book_id']) if data['book_id'] else 0
+            user_id = int(data['user_id']) if data['user_id'] else 0
+        except ValueError:
+            return 'Invalid book_id or user_id value', 400
+
+        purchase = Purchase(
+            book_id=book_id,
+            user_id=user_id,
+        )
+
+        db.session.add(purchase)
+        db.session.commit()
+
+        return redirect(url_for('purchase_detail', purchase_id=purchase.id))
+
+    books = get_list(db.select(Book))
+    users = get_list(db.select(User))
+
+    context = {
+        'title': 'Create Purchase',
+        'active': 'purchases',
+        'books': books,
+        'users': users
+    }
+
+    return render_template("purchase/create.html", **context)
+
+
+@app.delete("/purchases/<int:purchase_id>")
+def purchase_delete(purchase_id):
+    purchase = db.get_or_404(Purchase, purchase_id)
+
+    db.session.delete(purchase)
+    db.session.commit()
+
+    # return redirect(url_for("book_list"))
+    return 'OK', 200
 
 
 @app.get('/params')
-def get_params():
+def param_list():
     if 'username' not in session:
-        return redirect('/login')
+        return redirect(url_for('login'))
 
     params = request.values
-    keys = params.keys()
 
     context = {
         'title': 'Query params',
-        'keys': keys,
+        'keys': params.keys(),
         'params': params
     }
 
     return render_template('params.html', **context), 200
 
 
-# Task 4
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     session.pop('username', None)
 
-    return redirect('/login')
+    return redirect(url_for('login'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -179,11 +377,10 @@ def login():
                 password_error = 'Password must be at least 8 characters and contain at least 1 number and 1 capital letter'
 
             if username_error == '' and password_error == '':
-                # Task 2
                 session['username'] = username
 
                 # Process user login
-                return redirect('/')
+                return redirect(url_for('home_page'))
         else:
             abort(400, 'Invalid username or password')
 
@@ -214,6 +411,11 @@ def bad_req_error(error):
 @app.errorhandler(404)
 def not_found_error(error):
     return get_error_content('Not Found', error, '40x'), 404
+
+
+@app.errorhandler(405)
+def not_allowed(error):
+    return get_error_content('Not Allowed', error, '40x'), 405
 
 
 @app.errorhandler(500)
