@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        <h2>{{ title }}</h2>
+
+        <form id="addBookForm" method="POST" action="{{ url_for('book_create') }}">
+            <div class="card text-bg-dark">
+                <div class="card-body">
+                    <div class="form-group mb-2">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" placeholder="Enter title" value="{{ book_title }}"
+                               class="form-control bg-dark text-light" required>
+                        <p><small class="text-danger">{{ title_error }}</small></p>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" placeholder="Enter author" value="{{ author }}"
+                               class="form-control bg-dark text-light" required>
+                        <p><small class="text-danger">{{ author_error }}</small></p>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="year">Year</label>
+                        <input type="number" min="1" max="2023" id="year" name="year" placeholder="Enter year" value="{{ year }}"
+                               class="form-control bg-dark text-light" required>
+                        <p><small class="text-danger">{{ year_error }}</small></p>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="price">Price</label>
+                        <input type="number" min="1" id="price" name="price" placeholder="Enter price" value="{{ price }}"
+                               class="form-control bg-dark text-light" required>
+                        <p><small class="text-danger">{{ price_error }}</small></p>
+                    </div>
+                    <p><small id="serverError" class="text-danger"></small></p>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+{% endblock %}
