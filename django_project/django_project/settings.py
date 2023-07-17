@@ -15,6 +15,8 @@ import os
 from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 
+from django.core.management.commands.runserver import Command as runserver
+
 
 def get_env_value(env_variable):
     try:
@@ -41,7 +43,10 @@ SECRET_KEY = get_env_value('SECRET_KEY')
 DEBUG = get_env_value('DEBUG')
 
 ALLOWED_HOSTS = get_env_value('ALLOWED_HOSTS')
-PORT = get_env_value('PORT')
+
+runserver.default_port = get_env_value('DEFAULT_PORT')
+runserver.default_addr = get_env_value('DEFAULT_HOST')
+runserver.protocol = get_env_value('PROTOCOL')
 
 # Application definition
 
@@ -53,6 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user.apps.UserConfig',
+    'book.apps.BookConfig',
+    'purchase.apps.PurchaseConfig',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +99,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / f'{get_env_value("SQLITE3_DB_NAME")}.sqlite3',
+        'NAME': BASE_DIR / get_env_value("DATABASE_URL"),
     }
 }
 
@@ -134,3 +141,5 @@ STATIC_URL = get_env_value("STATIC_URL")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'user.User'
