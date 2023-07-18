@@ -10,5 +10,8 @@ class User(AbstractUser):
     age = models.IntegerField(null=False)
     password = models.CharField(max_length=255, null=False)
 
+    def __str__(self):
+        return f'{self.id}: {self.username}'
+
     class Meta:
         db_table = 'user'

@@ -10,6 +10,9 @@ class Book(models.Model):
     price = models.IntegerField(null=False)
     users = models.ManyToManyField(User, related_name='books')
 
+    def __str__(self):
+        return f'{self.id}: {self.title} - {self.author}'
+
     class Meta:
         db_table = 'book'
         unique_together = (('title', 'author'),)
