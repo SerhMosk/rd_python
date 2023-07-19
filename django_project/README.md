@@ -31,3 +31,8 @@
    - In Purchase, change the sorting order to sort by date in descending order.
 
     Separate migrations must be created for these modifications, in addition to those created in Task 3.
+
+### Lesson 38: Working with Django. Part 1
+
+1. For existing models, create a configuration for display in Django Admin. Tables in Django Admin should display all object attributes.
+2. Redefine the str method of existing models, giving object names a more readable appearance. For example, instead of displaying "User object(1)" it should display "1: Test User"
