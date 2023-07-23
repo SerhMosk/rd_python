@@ -1,0 +1,28 @@
+ {% for book in books %}
+    <tr>
+        <td>
+            <a href="{% url 'books:book-detail' pk=book.pk %}">{{ book.id }}</a>
+        </td>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.year }}</td>
+        <td>{{ book.price }}</td>
+        <td>
+            <a class="btn btn-info me-1" href="{% url 'books:book-detail' pk=book.pk %}">
+                <i class="bi-eye"></i>
+            </a>
+            <button type="button"
+                    class="btn btn-primary me-1"
+                    hx-get="{% url 'books:book-edit' pk=book.pk %}"
+                    hx-target="#modalDialog">
+                <i class="bi-pencil"></i>
+            </button>
+            <button type="button"
+                    class="btn btn-danger"
+                    hx-get="{% url 'books:book-remove' pk=book.pk %}"
+                    hx-target="#modalDialog">
+                <i class="bi-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endfor %}

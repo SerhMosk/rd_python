@@ -1,0 +1,37 @@
+{#{% for purchase, book, user in purchases %}#}
+{% for purchase in purchases %}
+    <tr>
+        <td>
+            <a href="{% url 'purchases:purchase-detail' pk=purchase.id %}">{{ purchase.id }}</a>
+        </td>
+        <td>
+            <a href="{% url 'books:book-detail' pk=purchase.book_id %}">{{ purchase.book }}</a>
+        </td>
+        <td>
+            <a href="{% url 'users:user-detail' pk=purchase.user_id %}">{{ purchase.user }}</a>
+        </td>
+        <td>
+            {{ purchase.book.price }}
+        </td>
+        <td>
+            {{ purchase.created_at }}
+        </td>
+        <td>
+            <a class="btn btn-info me-1" href="{% url 'purchases:purchase-detail' pk=purchase.pk %}">
+                <i class="bi-eye"></i>
+            </a>
+            <button type="button"
+                    class="btn btn-primary me-1"
+                    hx-get="{% url 'purchases:purchase-edit' pk=purchase.pk %}"
+                    hx-target="#modalDialog">
+                <i class="bi-pencil"></i>
+            </button>
+            <button type="button"
+                    class="btn btn-danger"
+                    hx-get="{% url 'purchases:purchase-remove' pk=purchase.pk %}"
+                    hx-target="#modalDialog">
+                <i class="bi-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endfor %}

@@ -36,3 +36,11 @@
 
 1. For existing models, create a configuration for display in Django Admin. Tables in Django Admin should display all object attributes.
 2. Redefine the str method of existing models, giving object names a more readable appearance. For example, instead of displaying "User object(1)" it should display "1: Test User"
+
+### Lesson 39: Working with Django. Part 2
+
+1. For each existing model, replace the simplest view functions with classes (class based views), register the corresponding urls.
+- For each model, the functionality of obtaining a list of objects (for example, GET /users) and obtaining one object by id (for example, GET /users/<int:id>) should be implemented.
+- The data must be rendered using HTML templates.
+2. Implement the functionality of creating new objects by creating the corresponding views and registering the corresponding urls.
+Create appropriate forms to be used to create objects.

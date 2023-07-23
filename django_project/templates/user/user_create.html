@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h2>{{ title }}</h2>
+
+            {% with WIDGET_ERROR_CLASS='is-invalid' %}
+            <form id="addUserForm" method="post">
+                <div class="card text-bg-dark">
+                    <div class="card-body">
+                        <div class="form-group">
+                            {% csrf_token %}
+                            {{ form.as_div }}
+                        </div>
+
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_username">Username</label>#}
+{#                            <input type="text" name="username" maxlength="20" required="" id="id_username"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_email">Email address</label>#}
+{#                            <input type="email" name="email" maxlength="254" id="id_email"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_password">Password</label>#}
+{#                            <input type="text" name="password" maxlength="255" required="" id="id_password"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_first_name">First name</label>#}
+{#                            <input type="text" name="first_name" maxlength="255" required="" id="id_first_name"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_last_name">Last name</label>#}
+{#                            <input type="text" name="last_name" maxlength="255" required="" id="id_last_name"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_age">Age</label>#}
+{#                            <input type="number" name="age" required="" id="id_age"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_is_superuser">Superuser status</label>#}
+{#                            <div>#}
+{#                            <small class="helptext">#}
+{#                                Designates that this user has all permissions without explicitly assigning them.#}
+{#                            </small>#}
+{#                            </div>#}
+{#                            <input type="checkbox" name="is_superuser" id="id_is_superuser">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_is_staff">Staff status</label>#}
+{#                            <div><small class="helptext">Designates whether the user can log into this admin site.</small></div>#}
+{#                            <input type="checkbox" name="is_staff" id="id_is_staff">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_is_active">Active</label>#}
+{#                            <div>#}
+{#                            <small class="helptext">#}
+{#                                Designates whether this user should be treated as active. Unselect this#}
+{#                                instead of deleting accounts.#}
+{#                            </small>#}
+{#                            </div>#}
+{#                            <input type="checkbox" name="is_active" id="id_is_active" checked="">#}
+{#                        </div>#}
+
+                        <div class="text-end">
+                            <a class="btn btn-secondary me-1" href="{% url 'users:user-index' %}">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% endwith %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}

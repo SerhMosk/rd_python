@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap5',
+    'widget_tweaks',
     'user.apps.UserConfig',
     'book.apps.BookConfig',
     'purchase.apps.PurchaseConfig',
@@ -78,8 +80,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,6 +142,10 @@ USE_TZ = get_env_value("USE_TZ")
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = get_env_value("STATIC_URL")
+
+STATICFILES_DIRS = [
+    BASE_DIR / get_env_value("STATIC_URL"),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -1,0 +1,22 @@
+{% load widget_tweaks %}
+
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+<form hx-post="{{ request.path }}" class="modal-content bg-dark text-light">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="addBookModalLabel">{{ title }}</h1>
+        <button type="button" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+            <span class="bi-x-lg"></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            {% csrf_token %}
+            <p>Are you sure you want to delete the purchase <b>#{{ purchase.id }}</b></p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary me-1" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Delete</button>
+    </div>
+</form>
+{% endwith %}
