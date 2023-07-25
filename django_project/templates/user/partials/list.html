@@ -1,0 +1,33 @@
+{% for user in users %}
+    <tr>
+        <td>
+            <a href="{% url 'users:user-detail' pk=user.id %}">{{ user.id }}</a>
+        </td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.date_joined|date:'H:i:s d.m.Y' }}</td>
+        <td>{{ user.is_superuser }}</td>
+        <td>{{ user.is_staff }}</td>
+        <td>{{ user.is_active }}</td>
+        <td>
+            <a class="btn btn-info me-1" href="{% url 'users:user-detail' pk=user.pk %}">
+                <i class="bi-eye"></i>
+            </a>
+            <button type="button"
+                    class="btn btn-primary me-1"
+                    hx-get="{% url 'users:user-edit' pk=user.pk %}"
+                    hx-target="#modalDialog">
+                <i class="bi-pencil"></i>
+            </button>
+            <button type="button"
+                    class="btn btn-danger"
+                    hx-get="{% url 'users:user-remove' pk=user.pk %}"
+                    hx-target="#modalDialog">
+                <i class="bi-trash"></i>
+            </button>
+        </td>
+    </tr>
+{% endfor %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h2>{{ title }}</h2>
+
+            {% with WIDGET_ERROR_CLASS='is-invalid' %}
+            <form id="addBookForm" method="post">
+                <div class="card text-bg-dark">
+                    <div class="card-body">
+                        <div class="form-group">
+                            {% csrf_token %}
+                            {{ form.as_div }}
+                        </div>
+
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_title">Title</label>#}
+{#                            <input type="text" name="title" maxlength="255" required="" id="id_title"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_author">Author</label>#}
+{#                            <input type="text" name="author" maxlength="255" required="" id="id_author"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_year">Year</label>#}
+{#                            <input type="number" name="year" required="" id="id_year"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+{#                        <div class="form-group mb-2">#}
+{#                            <label for="id_price">Price</label>#}
+{#                            <input type="number" name="price" required="" id="id_price"#}
+{#                                   class="form-control bg-dark text-light">#}
+{#                        </div>#}
+
+                        <div class="text-end">
+                            <a class="btn btn-secondary me-1" href="{% url 'books:book-index' %}">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% endwith %}
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+{% endblock %}

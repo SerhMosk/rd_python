@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+    <h2>{{ title }}</h2>
+
+    <div class="card text-bg-dark my-2">
+        <div class="card-body">
+            <button type="button" class="btn btn-secondary mr-2" onclick="history.back()">
+                <span class="bi-chevron-left"></span>&nbsp;Back
+            </button>
+            <button type="button" class="btn btn-primary" hx-get="{% url 'books:book-add' %}" hx-target="#modalDialog">
+                <span class="bi-plus-lg"></span>&nbsp;Add book
+            </button>
+            <span class="mx-2">or</span>
+            <a class="icon-link icon-link-hover" href="{% url 'books:book-create' %}">
+               Go to Create Book
+               <span class="bi-plus-lg"></span>
+            </a>
+        </div>
+    </div>
+
+    {% if books|length %}
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>author</th>
+                <th>year</th>
+                <th>price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody hx-get="{% url 'books:book-list' %}" hx-trigger="load, bookListChanged from:body">
+            <tr><td colspan="6">Loading...</td></tr>
+        </tbody>
+    </table>
+    {% else %}
+    <p>Nothing to show</p>
+    {% endif %}
+{% endblock %}
