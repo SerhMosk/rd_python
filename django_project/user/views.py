@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from user.forms import UserForm
+from user.forms import UserForm, CustomUserCreationForm
 from user.models import User
 
 
@@ -17,7 +17,11 @@ def user_add(request):
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)  # set `commit=False`
+            user.set_password(
+                form.cleaned_data["password"]
+            )  # call `set_password(...)` with "raw password"
+            user.save()  # save the actual User instance
             return HttpResponse(status=204, headers={'HX-Trigger': 'userListChanged'})
     else:
         form = UserForm()
@@ -34,7 +38,11 @@ def user_edit(request, pk):
     if request.method == 'POST':
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)  # set `commit=False`
+            user.set_password(
+                form.cleaned_data["password"]
+            )  # call `set_password(...)` with "raw password"
+            user.save()  # save the actual User instance
             return HttpResponse(status=204, headers={'HX-Trigger': 'userListChanged'})
     else:
         form = UserForm(instance=user)
@@ -76,7 +84,7 @@ class UserCreateView(CreateView):
         'active': 'users'
     }
     # fields = ('username', 'email', 'password', 'first_name', 'last_name', 'age', 'is_superuser', 'is_staff', 'is_active')
-    form_class = UserForm
+    form_class = CustomUserCreationForm
     template_name = 'user/user_create.html'
     success_url = reverse_lazy('users:user-index')
 
@@ -98,7 +106,7 @@ class UserUpdateView(UpdateView):
         'active': 'users'
     }
     # fields = ('username', 'email', 'password', 'age', 'first_name', 'last_name', 'is_superuser', 'is_staff', 'is_active')
-    form_class = UserForm
+    form_class = CustomUserCreationForm
     template_name = 'user/user_update.html'
     success_url = reverse_lazy('users:user-index')
 
