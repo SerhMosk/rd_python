@@ -44,3 +44,8 @@
 - The data must be rendered using HTML templates.
 2. Implement the functionality of creating new objects by creating the corresponding views and registering the corresponding urls.
 Create appropriate forms to be used to create objects.
+
+### Lesson 40: Django REST (DRF). Part 1
+
+1. Install the Django REST Framework to the existing Django project and update the settings accordingly.
+2. Create appropriate Serializers for all existing models.
