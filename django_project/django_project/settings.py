@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'bootstrap5',
     'widget_tweaks',
     'user.apps.UserConfig',
@@ -153,3 +154,15 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.User'
+
+# Config for DRF
+# https://www.django-rest-framework.org/api-guide/settings/#settings
+# Look into settings in python shell
+# > from rest_framework.settings import api_settings
+# > api_settings.defaults
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 10,
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ]
+}
