@@ -21,3 +21,4 @@ class Book(models.Model):
     class Meta:
         db_table = 'book'
         unique_together = (('title', 'author'),)
+        ordering = ['id']
