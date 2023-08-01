@@ -40,8 +40,8 @@
 ### Lesson 39: Working with Django. Part 2
 
 1. For each existing model, replace the simplest view functions with classes (class based views), register the corresponding urls.
-- For each model, the functionality of obtaining a list of objects (for example, GET /users) and obtaining one object by id (for example, GET /users/<int:id>) should be implemented.
-- The data must be rendered using HTML templates.
+   - For each model, the functionality of obtaining a list of objects (for example, GET /users) and obtaining one object by id (for example, GET /users/<int:id>) should be implemented.
+   - The data must be rendered using HTML templates.
 2. Implement the functionality of creating new objects by creating the corresponding views and registering the corresponding urls.
 Create appropriate forms to be used to create objects.
 
@@ -49,3 +49,10 @@ Create appropriate forms to be used to create objects.
 
 1. Install the Django REST Framework to the existing Django project and update the settings accordingly.
 2. Create appropriate Serializers for all existing models.
+
+### Lesson 41: Django REST (DRF). Part 2
+
+1. For all models, create a ViewSet by adding previously created serializers to them. Create appropriate routers.
+2. Configure standard pagination at the project level. Display 5 elements per page.
+3. Redefine pagination for UserViewSet, where 10 elements are displayed per page. All other ViewSets should display 5 elements each.
+4. Configure filtering for all ViewSets at the project level. For each ViewSet, define fields that can be sorted and searched.

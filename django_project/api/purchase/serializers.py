@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from book.serializers import BookSerializer
-from user.serializers import UserSerializer
+from api.book.serializers import BookSerializer
+from api.user.serializers import UserSerializer
 from purchase.models import Purchase
 
 
