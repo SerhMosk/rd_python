@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 
 from user.forms import UserForm, CustomUserCreationForm
 from user.models import User
+from user.tasks import print_user_purchases_number
 
 
 def user_list(request):
@@ -97,6 +98,11 @@ class UserDetailView(DetailView):
     }
     context_object_name = 'user'
     template_name = 'user/user_detail.html'
+
+    def get_context_data(self, **kwargs):
+        print(self.kwargs.get('pk'))
+        print_user_purchases_number.delay(user_id=self.kwargs.get('pk'))
+        return super(UserDetailView, self).get_context_data(**kwargs)
 
 
 class UserUpdateView(UpdateView):
