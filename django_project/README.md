@@ -56,3 +56,12 @@ Create appropriate forms to be used to create objects.
 2. Configure standard pagination at the project level. Display 5 elements per page.
 3. Redefine pagination for UserViewSet, where 10 elements are displayed per page. All other ViewSets should display 5 elements each.
 4. Configure filtering for all ViewSets at the project level. For each ViewSet, define fields that can be sorted and searched.
+
+### Lesson 42: Asynchronous tasks in Django
+
+1. Install and configure celery for your django project.
+Install auxiliary libraries for working with task broker (redis, rabbitmq).
+2. Freeze all installed libraries in the requirements.txt file: pip freeze > requirements.txt
+3. Inside the application user, create a celery task that will print any text.
+4. Inside the user application, create a celery task that will accept the user_id parameter and print the number of purchases for this user.
+5. Inside the user application, create a scheduled celery task that will print the number of user objects in the database every minute.

@@ -7,3 +7,5 @@ env/
 .env
 *.py[cod]
 *.sqlite3
+
+/celerybeat-schedule.db
