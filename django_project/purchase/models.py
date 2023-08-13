@@ -4,7 +4,7 @@ from user.models import User
 
 
 class Purchase(models.Model):
-    id = models.IntegerField(unique=True, primary_key=True)
+    id = models.AutoField(primary_key=True, unique=True)
     book = models.ForeignKey(Book, related_name='purchases', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='purchases', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True, null=False)

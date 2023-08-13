@@ -250,7 +250,10 @@ def purchase_list():
     #     .limit(cnt if cnt else -1)
 
     # Second solution
-    query = db.session.query(Purchase, Book, User).join(Book).join(User).limit(cnt if cnt else -1)
+    if cnt:
+        query = db.session.query(Purchase, Book, User).join(Book).join(User).limit(cnt)
+    else:
+        query = db.session.query(Purchase, Book, User).join(Book).join(User)
     purchases = query.all()
 
     # Task 7

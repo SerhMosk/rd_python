@@ -100,7 +100,6 @@ class UserDetailView(DetailView):
     template_name = 'user/user_detail.html'
 
     def get_context_data(self, **kwargs):
-        print(self.kwargs.get('pk'))
         print_user_purchases_number.delay(user_id=self.kwargs.get('pk'))
         return super(UserDetailView, self).get_context_data(**kwargs)
 
