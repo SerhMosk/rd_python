@@ -101,11 +101,23 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+OPTIONS = {
+    'sql_mode': 'traditional',
+}
+
 DATABASES = {
-    'default': dj_database_url.config(
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': get_env_value("DB_HOST"),   # Or an IP Address that your DB is hosted on
+        'PORT': get_env_value("DB_PORT"),
+        'NAME': get_env_value("DB_NAME"),
+        'USER': get_env_value("DB_USER"),
+        'PASSWORD': get_env_value("DB_PASSWORD"),
+    }
+    # 'default': dj_database_url.config(
+    #     conn_max_age=600,
+    #     conn_health_checks=True,
+    # )
     # 'default': {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / get_env_value("DATABASE_URL"),
@@ -145,10 +157,11 @@ USE_TZ = get_env_value("USE_TZ")
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = get_env_value("STATIC_URL")
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / get_env_value("STATIC_URL"),
 ]
+# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -172,8 +185,8 @@ REST_FRAMEWORK = {
 }
 
 # Celery settings
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = get_env_value("REDIS_URL")
+CELERY_RESULT_BACKEND = get_env_value("REDIS_URL")
 
 # Celery beat tasks
 # CELERY_BEAT_SCHEDULE = {
@@ -182,3 +195,5 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 #         'schedule': 60.0,  # Run every minute
 #     },
 # }
+
+CSRF_TRUSTED_ORIGINS = ["http://localhost"]

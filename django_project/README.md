@@ -65,3 +65,36 @@ Install auxiliary libraries for working with task broker (redis, rabbitmq).
 3. Inside the application user, create a celery task that will print any text.
 4. Inside the user application, create a celery task that will accept the user_id parameter and print the number of purchases for this user.
 5. Inside the user application, create a scheduled celery task that will print the number of user objects in the database every minute.
+
+### Lesson 43, 44: Preparation for launching the application - Docker. Part 1, 2
+
+#### Task 1
+1.1 Create a Dockerfile that should create an image of your Flask project.
+- When running an image using docker, the project must be available on port 4200.
+- Create a Dockerfile in the Flask homework directory.
+
+1.2 Create a docker-compose file in which to configure the launch of your Flask application along with the necessary additional services.
+- Flask app, Nginx, Postgres database should be run in separate containers.
+
+#### Task 2
+2.1 Create a Dockerfile that should create an image of your Django project.
+- When running an image using docker, the project must be available on port 8000.
+- Create a Dockerfile in the Django homework directory
+
+2.2 Create a docker-compose file in which to configure the launch of your Django application together with the necessary additional services.
+- Django app, Nginx, Redis, Celery worker, Celery Beat, Postgres database should be run in separate containers.
+- Make the necessary settings in settings.py for correct communication between services.
+
+
+### Run project in Docker container
+```
+docker build -t django_project_image . 
+docker run --name django_project -d -p 8080:8080 -v ${PWD}/../django_project:/app django_project_image
+```
+
+### Run project in Docker containers with docker-compose
+```
+docker-compose up --build
+docker exec django_app python manage.py migrate
+docker exec django_app python manage.py collectstatic --no-input --clear
+```

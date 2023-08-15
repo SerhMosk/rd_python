@@ -4,7 +4,7 @@ from user.models import User
 
 
 class Book(models.Model):
-    id = models.IntegerField(unique=True, primary_key=True)
+    id = models.AutoField(primary_key=True, unique=True)
     title = models.CharField(max_length=255, null=False)
     author = models.CharField(max_length=255, null=False)
     year = models.PositiveSmallIntegerField(
