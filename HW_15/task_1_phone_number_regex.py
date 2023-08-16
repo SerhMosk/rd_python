@@ -2,9 +2,10 @@
 # which you implemented the phone book. Consider the possibility
 # of several formats: +380xxxxxxxxx, 380xxxxxxxxx, 0xxxxxxxxx
 import json
+import os
 import re
 
-phone_book_file_path = "phone_book.json"
+phone_book_file_path = os.path.join(os.path.dirname(__file__), "phone_book.json")
 
 
 def read_phone_book():
