@@ -7,8 +7,9 @@ def summ_args(*args):
     return summ
 
 
-result = summ_args(1, 2, 3, 4)
-print(f'The sum of the numbers 1, 2, 3, 4 using the function is {result}')
+if __name__ == '__main__':
+    result = summ_args(1, 2, 3, 4)
+    print(f'The sum of the numbers 1, 2, 3, 4 using the function is {result}')
 
-result = summ_args(1, 1, 1, 1, 1)
-print(f'The sum of the numbers 1, 1, 1, 1, 1 using the function is {result}')
+    result = summ_args(1, 1, 1, 1, 1)
+    print(f'The sum of the numbers 1, 1, 1, 1, 1 using the function is {result}')

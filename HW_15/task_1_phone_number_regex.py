@@ -197,5 +197,6 @@ def init_app():
                 print_info(text='Wrong command.')
 
 
-# Run program
-init_app()
+if __name__ == "__main__":
+    # Run program
+    init_app()
