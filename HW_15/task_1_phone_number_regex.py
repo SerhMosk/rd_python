@@ -2,9 +2,10 @@
 # which you implemented the phone book. Consider the possibility
 # of several formats: +380xxxxxxxxx, 380xxxxxxxxx, 0xxxxxxxxx
 import json
+import os
 import re
 
-phone_book_file_path = "phone_book.json"
+phone_book_file_path = os.path.join(os.path.dirname(__file__), "phone_book.json")
 
 
 def read_phone_book():
@@ -197,5 +198,6 @@ def init_app():
                 print_info(text='Wrong command.')
 
 
-# Run program
-init_app()
+if __name__ == "__main__":
+    # Run program
+    init_app()

@@ -14,9 +14,10 @@ def get_max(array):
     return max_value
 
 
-max_elem = lambda array: max(array)
+if __name__ == '__main__':
+    max_elem = lambda array: max(array)
 
-print(f'The maximum value in the array {some_array}:')
-print(f'- with the built-in function is {max(some_array)}')
-print(f'- with my function is {get_max(some_array)}')
-print(f'- with the lambda function is {max_elem(some_array)}')
+    print(f'The maximum value in the array {some_array}:')
+    print(f'- with the built-in function is {max(some_array)}')
+    print(f'- with my function is {get_max(some_array)}')
+    print(f'- with the lambda function is {max_elem(some_array)}')

@@ -1,5 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.urls import reverse_lazy
+
 from user.models import User
 
 
@@ -17,6 +19,9 @@ class Book(models.Model):
 
     def __str__(self):
         return f'{self.id}: {self.title} - {self.author}'
+
+    def get_absolute_url(self):
+        return reverse_lazy('books:book-detail', kwargs={'pk': self.pk})
 
     class Meta:
         db_table = 'book'

@@ -98,3 +98,13 @@ docker-compose up --build
 docker exec django_app python manage.py migrate
 docker exec django_app python manage.py collectstatic --no-input --clear
 ```
+
+### Lesson 45: Testing code before launch
+1. Write at least 2 unit tests for any functions from previous homework.
+2. Write tests for the User model (Django application). Check the creation of the object.
+3. Write tests for UserViewSet. Check the ability to create an object, access an object, delete an object.
+
+### Run project tests
+```
+docker exec django_app python manage.py test
+```
